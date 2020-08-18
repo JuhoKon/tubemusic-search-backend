@@ -6,10 +6,42 @@ app = Flask(__name__)
 
 
 @app.route('/search/', methods=['POST'])
-def hello_world():
+def search_songs():
 
     search_results = ytmusic.search(
         (request.json.get('search')), filter="songs")
+    return jsonify(search_results)
+
+
+@app.route('/artistsearch/', methods=['POST'])
+def search_artists():
+    search_results = ytmusic.search(
+        (request.json.get('search')), filter="artists")
+    return jsonify(search_results)
+
+
+@app.route('/get_artist/', methods=['POST'])
+def get_artist():
+    search_results = ytmusic.get_artist(
+        (request.json.get('browseid')))
+    return jsonify(search_results)
+
+
+@app.route('/get_playlist/', methods=['POST'])
+def get_playlist():
+
+    print(request.json.get('browseid'))
+    search_results = ytmusic.get_playlist(
+        (request.json.get('browseid')))
+    return jsonify(search_results)
+
+
+@app.route('/get_artist_albums/', methods=['POST'])
+def get_artist_albums():
+
+    print(request.json.get('browseid'))
+    search_results = ytmusic.get_artist_albums(
+        (request.json.get('browseid')), params="UCedvOgsKFzcK3hA5taf3KoQ")
     return jsonify(search_results)
 
 
