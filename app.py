@@ -36,12 +36,12 @@ def get_playlist():
     return jsonify(search_results)
 
 
-@app.route('/get_artist_albums/', methods=['POST'])
-def get_artist_albums():
+@app.route('/get_album/', methods=['POST'])
+def get_album():
 
     print(request.json.get('browseid'))
-    search_results = ytmusic.get_artist_albums(
-        (request.json.get('browseid')), params="UCedvOgsKFzcK3hA5taf3KoQ")
+    search_results = ytmusic.get_album(
+        (request.json.get('browseid')))
     return jsonify(search_results)
 
 
