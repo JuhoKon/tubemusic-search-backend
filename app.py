@@ -45,6 +45,14 @@ def get_album():
     return jsonify(search_results)
 
 
+@app.route('/get_artist_albums/', methods=['POST'])
+def get_artist_albums():
+    print(request.json.get('browseid'))
+    search_results = ytmusic.get_artist_albums(
+        request.json.get('browseid'), request.json.get('params'))
+    return jsonify(search_results)
+
+
 if __name__ == '__main__':
     # Threaded option to enable multiple instances for multiple user access support
     print("Hello I AM SERVER")
