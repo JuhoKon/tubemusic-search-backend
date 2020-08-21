@@ -32,14 +32,13 @@ def get_playlist():
 
     print(request.json.get('browseid'))
     search_results = ytmusic.get_playlist(
-        (request.json.get('browseid')))
+        (request.json.get('browseid')), limit=5000)
     return jsonify(search_results)
 
 
 @app.route('/get_album/', methods=['POST'])
 def get_album():
 
-    print(request.json.get('browseid'))
     search_results = ytmusic.get_album(
         (request.json.get('browseid')))
     return jsonify(search_results)
@@ -47,9 +46,20 @@ def get_album():
 
 @app.route('/get_artist_albums/', methods=['POST'])
 def get_artist_albums():
-    print(request.json.get('browseid'))
+
+    browseid = request.json.get('browseid')
+    params = request.json.get("params")
+
     search_results = ytmusic.get_artist_albums(
-        request.json.get('browseid'), request.json.get('params'))
+        browseid, params)
+    return jsonify(search_results)
+
+
+@app.route('/get_video_watchlist/', methods=['POST'])
+def get_video_watchlist():
+    videoId = request.json.get('videoid')
+    search_results = ytmusic.get_watch_playlist(
+        videoId=videoId, limit=1)
     return jsonify(search_results)
 
 
