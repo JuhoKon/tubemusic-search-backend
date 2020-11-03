@@ -4,7 +4,6 @@ from ytmusicapi import YTMusic
 ytmusic = YTMusic()
 app = Flask(__name__)
 
-
 @app.route('/search/', methods=['POST'])
 def search_songs():
 
