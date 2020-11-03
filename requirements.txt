@@ -21,4 +21,4 @@ typed-ast==1.4.1
 urllib3==1.25.10
 Werkzeug==1.0.1
 wrapt==1.12.1
-ytmusicapi==0.9.1
+ytmusicapi==0.10.1
