@@ -7,40 +7,41 @@ app = Flask(__name__)
 
 @app.route('/search/', methods=['POST'])
 def search_songs():
-
-    search_results = ytmusic.search(
-        (request.json.get('search')), filter="songs")
+    search = request.json.get('search')
+    print(search)
+    search_results = ytmusic.search(search, filter="songs")
     return jsonify(search_results)
 
 
 @app.route('/artistsearch/', methods=['POST'])
 def search_artists():
-    search_results = ytmusic.search(
-        (request.json.get('search')), filter="artists")
+    search = request.json.get('search')
+    print(search)
+    search_results = ytmusic.search(search, filter="artists")
     return jsonify(search_results)
 
 
 @app.route('/get_artist/', methods=['POST'])
 def get_artist():
-    search_results = ytmusic.get_artist(
-        (request.json.get('browseid')))
+    browseid = request.json.get('browseid')
+    print(browseid)
+    search_results = ytmusic.get_artist(browseid)
     return jsonify(search_results)
 
 
 @app.route('/get_playlist/', methods=['POST'])
 def get_playlist():
-
-    print(request.json.get('browseid'))
-    search_results = ytmusic.get_playlist(
-        (request.json.get('browseid')), limit=5000)
+    browseid = request.json.get('browseid')
+    print(browseid)
+    search_results = ytmusic.get_playlist(browseid, limit=5000)
     return jsonify(search_results)
 
 
 @app.route('/get_album/', methods=['POST'])
 def get_album():
-
-    search_results = ytmusic.get_album(
-        (request.json.get('browseid')))
+    browseid = request.json.get('browseid')
+    print(browseid)
+    search_results = ytmusic.get_album(browseid)
     return jsonify(search_results)
 
 
@@ -50,8 +51,7 @@ def get_artist_albums():
     browseid = request.json.get('browseid')
     params = request.json.get("params")
 
-    search_results = ytmusic.get_artist_albums(
-        browseid, params)
+    search_results = ytmusic.get_artist_albums(browseid, params)
     return jsonify(search_results)
 
 
